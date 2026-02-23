@@ -95,7 +95,7 @@
                 </executions>
                 <configuration>
                     <excludes>
-                        <exclude>**/Main*</exclude>
+                        <exclude>core.basesyntax.Main.class</exclude>
                     </excludes>
                 </configuration>
             </plugin>
