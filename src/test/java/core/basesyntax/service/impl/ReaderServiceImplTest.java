@@ -6,17 +6,16 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import core.basesyntax.service.ReaderService;
 import java.util.List;
-import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 class ReaderServiceImplTest {
     private static final String PATH_TO_READ_FILE = "src/test/resources/ReportToReadTest.csv";
     private static final String PATH_TO_EMPTY_FILE = "src/test/resources/EmptyFileTest.csv";
+    private static ReaderService readerService;
 
-    private ReaderService readerService;
-
-    @BeforeEach
-    void setUp() {
+    @BeforeAll
+    static void beforeAll() {
         readerService = new ReaderServiceImpl();
     }
 

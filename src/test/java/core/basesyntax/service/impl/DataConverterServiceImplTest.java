@@ -9,21 +9,22 @@ import core.basesyntax.model.FruitTransaction;
 import core.basesyntax.service.DataConverterService;
 import java.util.ArrayList;
 import java.util.List;
-import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 class DataConverterServiceImplTest {
-    private DataConverterService dataConverterService;
+    public static final String HEADER = "type,fruit,quantity";
+    private static DataConverterService dataConverterService;
 
-    @BeforeEach
-    void setUp() {
+    @BeforeAll
+    static void beforeAll() {
         dataConverterService = new DataConverterServiceImpl();
     }
 
     @Test
     void convert_validData_ok() {
         List<String> inputData = new ArrayList<>();
-        inputData.add("type,fruit,quantity");
+        inputData.add(HEADER);
         inputData.add("b,apple,100");
         inputData.add("p,banana,34");
 
@@ -50,7 +51,7 @@ class DataConverterServiceImplTest {
     @Test
     void convert_nullLine_notOk() {
         List<String> inputData = new ArrayList<>();
-        inputData.add("type,fruit,quantity");
+        inputData.add(HEADER);
         inputData.add(null);
         assertThrows(RuntimeException.class, () -> {
             dataConverterService.convert(inputData);
@@ -60,7 +61,7 @@ class DataConverterServiceImplTest {
     @Test
     void convert_invalidLineFormat_notOk() {
         List<String> inputData = new ArrayList<>();
-        inputData.add("type,fruit,quantity");
+        inputData.add(HEADER);
         inputData.add("b.apple.100");
 
         assertThrows(RuntimeException.class, () -> {
@@ -71,7 +72,7 @@ class DataConverterServiceImplTest {
     @Test
     void convert_negativeQuantity_notOk() {
         List<String> inputData = new ArrayList<>();
-        inputData.add("type,fruit,quantity");
+        inputData.add(HEADER);
         inputData.add("b,apple,-12");
 
         assertThrows(RuntimeException.class, () -> {
@@ -82,7 +83,7 @@ class DataConverterServiceImplTest {
     @Test
     void convert_invalidNumber_notOk() {
         List<String> inputData = new ArrayList<>();
-        inputData.add("type,fruit,quantity");
+        inputData.add(HEADER);
         inputData.add("b,apple,1j3");
 
         assertThrows(RuntimeException.class, () -> {
@@ -93,7 +94,7 @@ class DataConverterServiceImplTest {
     @Test
     void convert_invalidOperation_notOk() {
         List<String> inputData = new ArrayList<>();
-        inputData.add("type,fruit,quantity");
+        inputData.add(HEADER);
         inputData.add("beer,apple,13");
 
         assertThrows(RuntimeException.class, () -> {
@@ -104,7 +105,7 @@ class DataConverterServiceImplTest {
     @Test
     void convert_emptyLine_notOk() {
         List<String> inputData = new ArrayList<>();
-        inputData.add("type,fruit,quantity");
+        inputData.add(HEADER);
         inputData.add("");
 
         assertThrows(RuntimeException.class, () -> {
@@ -115,7 +116,7 @@ class DataConverterServiceImplTest {
     @Test
     void convert_onlyHeader_ok() {
         List<String> inputData = new ArrayList<>();
-        inputData.add("type,fruit,quantity");
+        inputData.add(HEADER);
 
         List<FruitTransaction> actualResult = dataConverterService.convert(inputData);
         assertNotNull(actualResult);

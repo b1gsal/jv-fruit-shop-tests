@@ -5,14 +5,14 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import core.basesyntax.db.Storage;
 import core.basesyntax.strategy.OperationHandler;
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 class BalanceHandlerTest {
-    private OperationHandler operationHandler;
+    private static OperationHandler operationHandler;
 
-    @BeforeEach
-    void setUp() {
+    @BeforeAll
+    static void beforeAll() {
         operationHandler = new BalanceHandler();
     }
 

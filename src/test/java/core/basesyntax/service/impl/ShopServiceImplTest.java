@@ -15,15 +15,15 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 class ShopServiceImplTest {
-    private OperationStrategy strategy;
-    private ShopService shopService;
-    
-    @BeforeEach
-    void setUp() {
+    private static OperationStrategy strategy;
+    private static ShopService shopService;
+
+    @BeforeAll
+    static void beforeAll() {
         Map<FruitTransaction.Operation, OperationHandler> handlerMap = new HashMap<>();
         handlerMap.put(FruitTransaction.Operation.BALANCE, new BalanceHandler());
         strategy = new OperationStrategyImpl(handlerMap);

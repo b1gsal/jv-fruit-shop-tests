@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 class FileWriterServiceImplTest {
@@ -18,11 +18,10 @@ class FileWriterServiceImplTest {
             + "banana,20" + System.lineSeparator()
             + "apple,100" + System.lineSeparator()
             + "banana,100";
+    private static WriterService writerService;
 
-    private WriterService writerService;
-
-    @BeforeEach
-    void setUp() {
+    @BeforeAll
+    static void beforeAll() {
         writerService = new FileWriterServiceImpl();
     }
 

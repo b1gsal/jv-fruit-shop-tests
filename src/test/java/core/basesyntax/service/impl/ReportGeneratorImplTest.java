@@ -5,16 +5,22 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import core.basesyntax.service.ReportGenerator;
 import java.util.HashMap;
 import java.util.Map;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class ReportGeneratorImplTest {
+    private static ReportGenerator reportGenerator;
+
     private Map<String, Integer> storage;
-    private ReportGenerator reportGenerator;
+
+    @BeforeAll
+    static void beforeAll() {
+        reportGenerator = new ReportGeneratorImpl();
+    }
 
     @BeforeEach
     void setUp() {
-        reportGenerator = new ReportGeneratorImpl();
         storage = new HashMap<>();
     }
 
